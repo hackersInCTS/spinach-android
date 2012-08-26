@@ -1,4 +1,4 @@
-package com.example.androidpocs;
+package com.hackersInCTS.spinach;
 
 import android.os.Bundle;
 import android.view.Menu;
