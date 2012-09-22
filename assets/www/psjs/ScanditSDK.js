@@ -144,10 +144,10 @@ var ScanditSDK = function() {
  */
 
 ScanditSDK.prototype.scan = function(success, fail, appKey, options) {
-    return PhoneGap.exec(success, fail, 'ScanditSDK', 'scan', 
+    return cordova.exec(success, fail, 'ScanditSDK', 'scan',
                          [appKey, options]);
 };
 
-PhoneGap.addConstructor(function() {
-    PhoneGap.addPlugin('ScanditSDK', new ScanditSDK());
+cordova.addConstructor(function() {
+    cordova.addPlugin('ScanditSDK', new ScanditSDK());
 });
