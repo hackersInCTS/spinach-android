@@ -1,6 +1,6 @@
 var ScanditSDK = function() {
 
-}
+};
 
 /**
  * Available options:
@@ -148,6 +148,8 @@ ScanditSDK.prototype.scan = function(success, fail, appKey, options) {
                          [appKey, options]);
 };
 
-cordova.addConstructor(function() {
-    cordova.addPlugin('ScanditSDK', new ScanditSDK());
-});
+//cordova.addConstructor(function() {
+//    cordova.addPlugin('ScanditSDK', new ScanditSDK());
+//});
+
+window.scanditSDK = new ScanditSDK();
