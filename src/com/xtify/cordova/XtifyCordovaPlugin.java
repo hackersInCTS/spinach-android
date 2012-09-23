@@ -66,7 +66,7 @@ public class XtifyCordovaPlugin extends Plugin {
 		if (callBack == null || (callBack.length() == 0)) {
 			result = new PluginResult(Status.ERROR);
 		}
-		ctx.getApplicationContext().getApplicationContext().getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE).edit().putString(KEY_CALLBACK, callBack).commit();
+		cordova.getActivity().getApplicationContext().getApplicationContext().getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE).edit().putString(KEY_CALLBACK, callBack).commit();
 		if (!registerSDK()) {
 			result = new PluginResult(Status.ERROR);
 		}
@@ -77,14 +77,14 @@ public class XtifyCordovaPlugin extends Plugin {
 		if (iconName == null || (iconName.length() == 0)) {
 			result = new PluginResult(Status.ERROR, "Icon name cannot be empty");
 		} else {
-			int iconId = ctx.getApplicationContext().getResources().getIdentifier(iconName, "drawable", ctx.getApplicationContext().getPackageName());
-			XtifySDK.setNotificationIcon(iconId, ctx.getApplicationContext().getApplicationContext());
+			int iconId = cordova.getActivity().getApplicationContext().getResources().getIdentifier(iconName, "drawable", cordova.getActivity().getApplicationContext().getPackageName());
+			XtifySDK.setNotificationIcon(iconId, cordova.getActivity().getApplicationContext().getApplicationContext());
 		}
 		return result;
 	}
 
 	private PluginResult getXid(PluginResult result) {
-		String xid = XtifySDK.getXidKey(ctx.getApplicationContext());
+		String xid = XtifySDK.getXidKey(cordova.getActivity().getApplicationContext());
 		if (xid != null) {
 			result = new PluginResult(Status.OK, xid);
 		} else {
@@ -94,8 +94,8 @@ public class XtifyCordovaPlugin extends Plugin {
 	}
 
 	private PluginResult isRegistered(PluginResult result) {
-		String c2dmErrorID = ctx.getApplicationContext().getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE).getString(KEY_C2DM_ERROR_ID, null);
-		if (XtifySDK.getXidKey(ctx.getApplicationContext()) != null) {
+		String c2dmErrorID = cordova.getActivity().getApplicationContext().getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE).getString(KEY_C2DM_ERROR_ID, null);
+		if (XtifySDK.getXidKey(cordova.getActivity().getApplicationContext()) != null) {
 			result = new PluginResult(Status.OK);
 		} else if (c2dmErrorID != null) {
 			result = new PluginResult(Status.ERROR, c2dmErrorID);
@@ -106,9 +106,9 @@ public class XtifyCordovaPlugin extends Plugin {
 	}
 
 	private boolean registerSDK() {
-		HashMap<String, String> properties = readPropertiesFile(ctx.getApplicationContext());
+		HashMap<String, String> properties = readPropertiesFile(cordova.getActivity().getApplicationContext());
 		if (properties != null) {
-			XtifySDK.start(ctx.getApplicationContext().getApplicationContext(), properties.get(KEY_APPKEY), properties.get(KEY_SENDERID));
+			XtifySDK.start(cordova.getActivity().getApplicationContext().getApplicationContext(), properties.get(KEY_APPKEY), properties.get(KEY_SENDERID));
 			return true;
 		} else {
 			return false;
