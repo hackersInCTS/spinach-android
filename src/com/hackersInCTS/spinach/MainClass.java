@@ -5,12 +5,15 @@ import android.view.Menu;
 
 import org.apache.cordova.*;
 
+import com.xtify.cordova.*;
+
 public class MainClass extends DroidGap {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         super.loadUrl("file:///android_asset/www/xpsrc/index.html");
+        XtifyCordovaPlugin.processActivityExtras(getIntent().getExtras(), this);
     }
 
     @Override
