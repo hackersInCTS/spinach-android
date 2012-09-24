@@ -1,3 +1,4 @@
 [submodule "assets/www/xpsrc"]
 	path = assets/www/xpsrc
-	url = git@github.com:hackersInCTS/spinach-www.git
+	url = git://github.com/hackersInCTS/spinach-www.git
+
