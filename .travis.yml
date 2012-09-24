@@ -1,3 +1,2 @@
 language: java
-
-ant release
+    ant release
