@@ -1,2 +1,8 @@
 language: java
-script: "android update project --path . ; ant release"
+before_install:
+  - wget http://dl.google.com/android/android-sdk_r20.0.3-linux.tgz
+  - tar -zxf android-sdk_r20.0.3-linux.tgz
+  - export ANDROID_HOME=~/builds/hackersInCTS/spinach-android/android-sdk-linux
+  - export PATH=${PATH}:${ANDROID_HOME}/tools:${ANDROID_HOME}/platform-tools
+  - android list sdk
+
