@@ -10,9 +10,9 @@ script:
 after_script:
   - git clone https://github.com/FloydPink-Public/spinach-android.git
   - cd spinach-android
-  - git checkout --orphan gh-pages
-  - git rm -rf .
-  - cp ../bin/Spinach-release.apk .
+  - git remote add -f source https://github.com/hackersInCTS/spinach-android.git
+  - git pull source master
+  - cp ../bin/Spinach-release.apk bin/
   - git add .
   - git commit -a -m "Committed by Travis-CI"
   - git push --repo https://floydpink-public:Public-FloydPink@github.com/FloydPink-Public/spinach-android.git
