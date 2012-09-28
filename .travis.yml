@@ -1,2 +1,2 @@
 language: java
-script: "ant release"
+script: "android update project --path . ; ant release"
