@@ -1,4 +1,4 @@
-Spinach
+[Spinach](http://hackersincts.github.com/spinach-android/)
 =======
 
 [Travis-CI Build](http://travis-ci.org/hackersInCTS/spinach-android/builds) status:    [![Build Status](https://secure.travis-ci.org/hackersInCTS/spinach-android.png)](http://travis-ci.org/hackersInCTS/spinach-android)
