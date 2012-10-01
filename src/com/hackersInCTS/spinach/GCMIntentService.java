@@ -12,6 +12,7 @@ import com.plugin.GCM.GCMPlugin;
 public class GCMIntentService extends GCMBaseIntentService {
 
 	public static final String ME = "GCMReceiver";
+	private static final String CordovaCallbackMethod = "Spinach.GCM.callback";
 
 	public GCMIntentService() {
 		super("GCMIntentService");
@@ -36,7 +37,7 @@ public class GCMIntentService extends GCMBaseIntentService {
 			// Send this JSON data to the JavaScript application above EVENT
 			// should be set to the msg type
 			// In this case this is the registration ID
-			GCMPlugin.sendJavascript(json);
+			GCMPlugin.sendJavascript(json, CordovaCallbackMethod);
 
 		} catch (JSONException e) {
 			// No message to the user is sent, JSON failed
@@ -57,23 +58,16 @@ public class GCMIntentService extends GCMBaseIntentService {
 		Bundle extras = intent.getExtras();
 		if (extras != null) {
 			try {
-				Log.v(ME + ":onMessage extras (RAW)", extras.toString());
-				Log.v(ME + ":onMessage extras ", extras.getString("message"));
+				Log.v(ME + ":onMessage extras payload ",
+						extras.getString("payload"));
 
 				JSONObject json;
-				json = new JSONObject().put("event", "message");
-
-				// My application on my host server sends back to "EXTRAS"
-				// variables message and msgcnt
-				// Depending on how you build your server app you can specify
-				// what variables you want to send
-				//
-				json.put("message", extras.getString("message"));
-				json.put("msgcnt", extras.getString("msgcnt"));
+				json = new JSONObject(extras.getString("payload")).put("event",
+						"message");
 
 				Log.v(ME + ":onMessage ", json.toString());
 
-				GCMPlugin.sendJavascript(json);
+				GCMPlugin.sendJavascript(json, CordovaCallbackMethod);
 				// Send the MESSAGE to the Javascript application
 			} catch (JSONException e) {
 				Log.e(ME + ":onMessage", "JSON exception");
