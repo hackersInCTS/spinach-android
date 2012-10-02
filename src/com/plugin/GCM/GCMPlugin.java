@@ -76,7 +76,11 @@ public class GCMPlugin extends Plugin {
 		String _d = "javascript:" + callbackMethodName + "(" + _json.toString()
 				+ ")";
 		Log.v(ME + ":sendJavascript", _d);
-		gwebView.sendJavascript(_d);
+		if (gwebView != null) {
+			gwebView.sendJavascript(_d);			
+		} else {
+			Log.d(ME + ":sendJavascript", "Failed as there is no instance of the plugin!");
+		}
 	}
 
 }
