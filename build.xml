@@ -97,7 +97,7 @@
         <arg value="-a"/>
         <arg value="android.intent.action.MAIN"/>
         <arg value="-n"/>
-        <arg value="com.hackersInCTS.spinach/.MainClass"/>
+        <arg value="com.hackersInCTS.spinach/.MainActivity"/>
     </exec>
 </target>
 
