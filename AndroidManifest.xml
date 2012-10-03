@@ -37,11 +37,11 @@
     <uses-permission android:name="android.permission.CAMERA"/>
 
     <application
-    		android:name="com.hackersInCTS.spinach.SpinachApp"
+            android:name="com.hackersInCTS.spinach.SpinachApp"
             android:icon="@drawable/ic_launcher"
             android:label="@string/app_name"
             android:theme="@style/AppTheme">
-            
+
         <activity
                 android:name=".MainActivity"
                 android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale"
@@ -51,7 +51,7 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        
+
         <activity android:name="com.mirasense.scanditsdk.plugin.ScanditSDKActivity"/>
 
         <receiver android:name="com.google.android.gcm.GCMBroadcastReceiver"
