@@ -27,30 +27,21 @@ public class GCMPlugin extends Plugin {
 	@SuppressWarnings("deprecation")
 	@Override
 	public PluginResult execute(String action, JSONArray data, String callbackId) {
-
 		PluginResult result = null;
-
 		Log.v(ME + ":execute", "action=" + action);
 
 		if (REGISTER.equals(action)) {
-
 			Log.v(ME + ":execute", "data=" + data.toString());
-
 			try {
-
 				JSONObject jo = new JSONObject(data.toString().substring(1,
 						data.toString().length() - 1));
-
 				gwebView = this;
-
 				Log.v(ME + ":execute", "jo=" + jo.toString());
 
 				gSenderID = (String) jo.get("senderID");
-
 				Log.v(ME + ":execute", "senderID=" + gSenderID);
-
+				
 				GCMRegistrar.register(this.cordova.getContext(), gSenderID);
-
 				Log.v(ME + ":execute", "GCMRegistrar.register called ");
 
 				result = new PluginResult(Status.OK);
@@ -59,7 +50,6 @@ public class GCMPlugin extends Plugin {
 				result = new PluginResult(Status.JSON_EXCEPTION);
 			}
 		} else if (UNREGISTER.equals(action)) {
-
 			GCMRegistrar.unregister(this.cordova.getContext());
 			Log.v(ME + ":" + UNREGISTER, "GCMRegistrar.unregister called ");
 

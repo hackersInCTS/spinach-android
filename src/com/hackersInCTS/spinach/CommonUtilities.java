@@ -15,10 +15,6 @@
  */
 package com.hackersInCTS.spinach;
 
-import android.content.Context;
-import android.content.Intent;
-import android.util.Log;
-
 /**
  * Helper class providing methods and constants common to other classes in the
  * app.
@@ -31,30 +27,7 @@ public final class CommonUtilities {
     static final String TAG = "GCMDemo";
 
     /**
-     * Intent used to display a message in the screen.
-     */
-    static final String DISPLAY_MESSAGE_ACTION =
-            "com.hackersInCTS.spinach.DISPLAY_MESSAGE";
-
-    /**
      * Callback Method on the JS side that would handle notifications 
      */
 	static final String JS_CALLBACK_METHOD = "Spinach.GCM.callback";
-    
-    
-    /**
-     * Notifies UI to display a message.
-     * <p>
-     * This method is defined in the common helper because it's used both by
-     * the UI and the background service.
-     *
-     * @param context application's context.
-     * @param message message to be displayed.
-     */
-    static void displayMessage(Context context, String message) {
-    	Log.d(TAG + ":displayMessage", "Message: " + message);
-        Intent intent = new Intent(DISPLAY_MESSAGE_ACTION);
-        intent.putExtra("message", message);
-        context.sendBroadcast(intent);
-    }
 }
