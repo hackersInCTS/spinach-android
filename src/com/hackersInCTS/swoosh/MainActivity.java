@@ -1,6 +1,6 @@
-package com.hackersInCTS.spinach;
+package com.hackersInCTS.swoosh;
 
-import static com.hackersInCTS.spinach.CommonUtilities.JS_CALLBACK_METHOD;
+import static com.hackersInCTS.swoosh.CommonUtilities.JS_CALLBACK_METHOD;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -20,14 +20,14 @@ public class MainActivity extends DroidGap {
 		super.onCreate(savedInstanceState);
 		GCMRegistrar.checkDevice(this);
 		GCMRegistrar.checkManifest(this);
-
+		super.setIntegerProperty("splashscreen", R.drawable.splash ); 
 		String url = "file:///android_asset/www/xpsrc/index.html";
 		Bundle extras = getIntent().getExtras();
 		if (extras != null && extras.getString("message") != null) {
-			url += "?message=" + extras.getString("message");
+			url += "?jsonData=" + extras.getString("message");
 		}
 		
-		super.loadUrl(url);
+		super.loadUrl(url, 10000);
 		Log.v(TAG, ":onCreate Ends");
 	}
 
@@ -60,7 +60,7 @@ public class MainActivity extends DroidGap {
 	protected void onStart() {
 		Log.v(TAG, ":onStart Starts");
 		super.onStart();
-		SpinachApp.activityStarted();
+		SwooshApp.activityStarted();
 		Log.v(TAG, ":onStart End");
 	};
 
@@ -79,7 +79,7 @@ public class MainActivity extends DroidGap {
 	protected void onStop() {
 		Log.v(TAG, ":onStop Starts");
 		super.onStop();
-		SpinachApp.activityStopped();
+		SwooshApp.activityStopped();
 		Log.v(TAG, ":onStop Ends");
 	};
 
@@ -87,7 +87,7 @@ public class MainActivity extends DroidGap {
 	protected void onPause() {
 		Log.v(TAG, ":onPause Starts");
 		super.onPause();
-		SpinachApp.activityPaused();
+		SwooshApp.activityPaused();
 		Log.v(TAG, ":onPause Ends");
 	};
 
@@ -95,7 +95,7 @@ public class MainActivity extends DroidGap {
 	protected void onResume() {
 		Log.v(TAG, ":onResume Starts");
 		super.onResume();
-		SpinachApp.activityResumed();
+		SwooshApp.activityResumed();
 		Log.v(TAG, ":onResume Ends");
 	};
 }

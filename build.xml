@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="Spinach" default="help">
+<project name="Swoosh" default="help">
 
     <!-- The local.properties file is created and updated by the 'android' tool.
          It contains the path to the SDK. It should *NOT* be checked into
@@ -97,7 +97,7 @@
             <arg value="-a"/>
             <arg value="android.intent.action.MAIN"/>
             <arg value="-n"/>
-            <arg value="com.hackersInCTS.spinach/.MainActivity"/>
+            <arg value="com.hackersInCTS.swoosh/.MainActivity"/>
         </exec>
     </target>
 
