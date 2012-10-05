@@ -21,8 +21,8 @@ public class GCMPlugin extends Plugin {
 	public static final String REGISTER = "register";
 	public static final String UNREGISTER = "unregister";
 
-	public static Plugin gwebView;
-	private static String gSenderID;
+	public static Plugin gcmPlugin;
+	private static String gcmSenderId;
 
 	@SuppressWarnings("deprecation")
 	@Override
@@ -35,13 +35,13 @@ public class GCMPlugin extends Plugin {
 			try {
 				JSONObject jo = new JSONObject(data.toString().substring(1,
 						data.toString().length() - 1));
-				gwebView = this;
+				gcmPlugin = this;
 				Log.v(ME + ":execute", "jo=" + jo.toString());
 
-				gSenderID = (String) jo.get("senderID");
-				Log.v(ME + ":execute", "senderID=" + gSenderID);
+				gcmSenderId = (String) jo.get("senderID");
+				Log.v(ME + ":execute", "senderID=" + gcmSenderId);
 				
-				GCMRegistrar.register(this.cordova.getContext(), gSenderID);
+				GCMRegistrar.register(this.cordova.getContext(), gcmSenderId);
 				Log.v(ME + ":execute", "GCMRegistrar.register called ");
 
 				result = new PluginResult(Status.OK);
@@ -66,8 +66,8 @@ public class GCMPlugin extends Plugin {
 		String _d = "javascript:" + callbackMethodName + "(" + _json.toString()
 				+ ")";
 		Log.v(ME + ":sendJavascript", _d);
-		if (gwebView != null) {
-			gwebView.sendJavascript(_d);			
+		if (gcmPlugin != null) {
+			gcmPlugin.sendJavascript(_d);			
 		} else {
 			Log.d(ME + ":sendJavascript", "Failed as there is no instance of the plugin!");
 		}
