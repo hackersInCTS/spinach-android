@@ -65,57 +65,53 @@ public class GCMIntentService extends GCMBaseIntentService {
 
 		Bundle extras = intent.getExtras();
 		if (extras != null) {
-			try {
-				JSONObject json;
-				json = new JSONObject(extras.getString("payload")).put("event",
-						"message");
-
-				String message = json.get("message").toString();
-
-				Log.v(TAG + ":onMessage JSON", json.toString());
-
-				generateNotification(context, message);
-
-				GCMPlugin.sendJavascript(json, JS_CALLBACK_METHOD);
-			} catch (JSONException e) {
-				Log.e(TAG + ":onMessage", "JSON exception");
-			}
+			displayMessage(context, extras.getString("payload"));
 		}
 	}
 
 	@Override
 	public void onError(Context context, String errorId) {
-		Log.i(TAG + ":onError", "Received error: " + errorId);
+		Log.e(TAG + ":onError", "Received error: " + errorId);
 	}
 
 	@Override
 	protected void onDeletedMessages(Context context, int total) {
 		Log.i(TAG + ":onDeletedMessages",
 				"Received deleted messages notification");
-		String message = String.format(
-				"From GCM: server deleted %1$d pending messages!", total);
-		generateNotification(context, message);
+		String message = String.format("There are %1$d pending messages!",
+				total);
+		displayMessage(context, message);
 	}
 
 	@Override
 	protected boolean onRecoverableError(Context context, String errorId) {
-		// log message
-		Log.i(TAG + ":onRecoverableError", "Received recoverable error: "
+		Log.w(TAG + ":onRecoverableError", "Received recoverable error: "
 				+ errorId);
 		return super.onRecoverableError(context, errorId);
 	}
 
-	/**
-	 * Issues a notification to inform the user that server has sent a message.
-	 */
-	@SuppressWarnings("deprecation")
-	private static void generateNotification(Context context, String message) {
-		// don't show if app is running and in the foreground
+	private static void displayMessage(Context context, String message) {
 		if (SpinachApp.isActivityRunning() && SpinachApp.isActivityVisible()) {
-			Log.v(TAG + ":generateNotification",
-					"Skipping statusbar notification as app is in FG.");
-			return;
+			displayMessageInActivity(context, message);
+		} else {
+			generateStatusNotification(context, message);
 		}
+	}
+
+	private static void displayMessageInActivity(Context context, String message) {
+		Log.d(TAG + ":displayMessageInActivity",
+				"Context: " + context.toString());
+		Intent intent = new Intent(context, MainActivity.class);
+		intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP
+				| Intent.FLAG_ACTIVITY_NEW_TASK
+				| Intent.FLAG_ACTIVITY_SINGLE_TOP);
+		intent.putExtra("message", message);
+		context.startActivity(intent);
+	}
+
+	@SuppressWarnings("deprecation")
+	private static void generateStatusNotification(Context context,
+			String messageJson) {
 		int icon = R.drawable.ic_stat_gcm;
 		long when = System.currentTimeMillis();
 		NotificationManager notificationManager = (NotificationManager) context
@@ -125,7 +121,17 @@ public class GCMIntentService extends GCMBaseIntentService {
 		notificationIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP
 				| Intent.FLAG_ACTIVITY_NEW_TASK
 				| Intent.FLAG_ACTIVITY_SINGLE_TOP);
-		
+		notificationIntent.putExtra("message", messageJson);
+
+		String message = "";
+		try {
+			message = new JSONObject(messageJson).get("message")
+					.toString();
+		} catch (JSONException e) {
+			Log.e(TAG + ":generateStatusNotification", "JSON exception");
+			return;
+		}
+
 		PendingIntent intent = PendingIntent.getActivity(context, 0,
 				notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
