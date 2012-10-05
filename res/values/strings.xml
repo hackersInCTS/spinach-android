@@ -1,7 +1,7 @@
 <resources>
 
-    <string name="app_name">Spinach</string>
+    <string name="app_name">Swoosh</string>
     <string name="menu_settings">Settings</string>
-    <string name="title_activity_main_class">Spinach</string>
+    <string name="title_activity_main_class">Swoosh</string>
 
 </resources>

@@ -1,8 +1,8 @@
-package com.hackersInCTS.spinach;
+package com.hackersInCTS.swoosh;
 
 import android.app.Application;
 
-public class SpinachApp extends Application {
+public class SwooshApp extends Application {
 
 	private static boolean uiRunning;
 

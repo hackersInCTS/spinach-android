@@ -30,12 +30,13 @@ public class GCMPlugin extends Plugin {
 		PluginResult result = null;
 		Log.v(ME + ":execute", "action=" + action);
 
+		gcmPlugin = this;
+		
 		if (REGISTER.equals(action)) {
 			Log.v(ME + ":execute", "data=" + data.toString());
 			try {
 				JSONObject jo = new JSONObject(data.toString().substring(1,
 						data.toString().length() - 1));
-				gcmPlugin = this;
 				Log.v(ME + ":execute", "jo=" + jo.toString());
 
 				gcmSenderId = (String) jo.get("senderID");

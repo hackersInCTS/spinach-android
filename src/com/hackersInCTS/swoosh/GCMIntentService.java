@@ -1,4 +1,4 @@
-package com.hackersInCTS.spinach;
+package com.hackersInCTS.swoosh;
 
 import com.google.android.gcm.*;
 
@@ -15,7 +15,7 @@ import android.util.Log;
 
 import com.plugin.GCM.GCMPlugin;
 
-import static com.hackersInCTS.spinach.CommonUtilities.JS_CALLBACK_METHOD;
+import static com.hackersInCTS.swoosh.CommonUtilities.JS_CALLBACK_METHOD;
 
 public class GCMIntentService extends GCMBaseIntentService {
 
@@ -91,7 +91,7 @@ public class GCMIntentService extends GCMBaseIntentService {
 	}
 
 	private static void displayMessage(Context context, String message) {
-		if (SpinachApp.isActivityRunning() && SpinachApp.isActivityVisible()) {
+		if (SwooshApp.isActivityRunning() && SwooshApp.isActivityVisible()) {
 			displayMessageInActivity(context, message);
 		} else {
 			generateStatusNotification(context, message);

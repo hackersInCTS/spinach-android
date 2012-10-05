@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.hackersInCTS.spinach;
+package com.hackersInCTS.swoosh;
 
 /**
  * Helper class providing methods and constants common to other classes in the
@@ -29,5 +29,5 @@ public final class CommonUtilities {
     /**
      * Callback Method on the JS side that would handle notifications 
      */
-	static final String JS_CALLBACK_METHOD = "Spinach.GCM.callback";
+	static final String JS_CALLBACK_METHOD = "Swoosh.GCM.callback";
 }
