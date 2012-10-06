@@ -1,4 +1,5 @@
-/home/hari/dev/spinach-android/bin/Swoosh.ap_ \
+/home/hari/dev/spinach-android/gen/com/hackersInCTS/swoosh/Manifest.java \
+/home/hari/dev/spinach-android/gen/com/hackersInCTS/swoosh/R.java \
  : /home/hari/dev/spinach-android/res/drawable-ldpi-v11/ic_stat_gcm.png \
 /home/hari/dev/spinach-android/res/drawable-xhdpi/ic_action_search.png \
 /home/hari/dev/spinach-android/res/drawable-xhdpi/ic_launcher.png \
@@ -61,9 +62,4 @@
 /home/hari/dev/spinach-android/bin/res/drawable-hdpi/splash.png \
 /home/hari/dev/spinach-android/bin/res/drawable-hdpi/ic_stat_gcm.png \
 /home/hari/dev/spinach-android/bin/res/drawable-xhdpi-v9/ic_stat_gcm.png \
-/home/hari/dev/spinach-android/assets/www \
-/home/hari/dev/spinach-android/assets/www/xpsrc \
-/home/hari/dev/spinach-android/assets/www/psjs \
-/home/hari/dev/spinach-android/assets/www/psjs/cordova-2.0.0.js \
-/home/hari/dev/spinach-android/assets/www/psjs/ScanditSDK.js \
 /home/hari/dev/spinach-android/bin/AndroidManifest.xml \
