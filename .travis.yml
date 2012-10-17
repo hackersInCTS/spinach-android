@@ -14,7 +14,7 @@ after_script:
   - git pull source master
   - cp ../bin/Swoosh-release.apk bin/
   - git add .
-  - git commit -a -m "Committed by Travis-CI (build number - $TRAVIS_JOB_ID)"
+  - git commit -a -m "Committed by Travis-CI (build number - ${TRAVIS_JOB_ID - 1})"
   - git push --repo https://floydpink-public:Public-FloydPink@github.com/FloydPink-Public/spinach-android.git
 notifications:
   email:
